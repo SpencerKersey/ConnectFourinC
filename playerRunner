@@ -1,0 +1,58 @@
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include "common.h"
+#include "board.h"
+#include "input.h"
+
+/** Holds the board representation of the game */
+ConnectFourBoard *board;
+
+/**
+ * Print out an error message and exit.
+ */
+static void fail( char const *message ) {
+  fprintf( stderr, "%s\n", message );
+  exit( 1 );
+}
+
+/** 
+ * Print out a usage message and exit.
+ */
+static void usage() {
+  fprintf( stderr, "usage: reset <board-file>\n" );
+  exit( 1 );
+}
+
+/**
+ * TODO
+*/
+int main( int argc, char *argv[] ) {
+    initializeBoard( board );
+
+    while( true ) {
+
+        printBoard( board );
+
+        if( board->currPlayer == 'y' ) {
+            printf("Yellow >> ");
+        } else {
+            printf("Red >> ");
+        }
+
+        char *command = readCommand( stdin );
+        if( strcmp( command, "place" ) ) {
+
+        } else if( strcmp( command, "exit" ) ) {
+            free( command );
+            return EXIT_SUCCESS;0
+        } else {
+            free( command );
+            usage();
+        }
+
+        
+    }
+}
